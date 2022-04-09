@@ -376,26 +376,138 @@
 //   }
 // }
 
-const User = function ({ name, age, post, sex }) {
-  this.name = name;
-  this.age = age;
-  this.post = post;
-  this.sex = sex;
-};
+// const User = function ({ name, age, post, sex }) {
+//   this.name = name;
+//   this.age = age;
+//   this.post = post;
+//   this.sex = sex;
+// };
 
-User.prototype.getInfo = function () {
-  console.log(
-    `Користувачу ${this.name} ${this.age} років і в ${
-      this.sex === 'male' ? 'нього' : 'неї'
-    } ${this.post} публікацій.`
-  );
-};
-const ivika = new User({ name: 'Ivika', age: 25, post: 250, sex: 'female' });
-ivika.getInfo();
-const myroslav = new User({
-  name: 'Myroslav',
-  age: 18,
-  post: 240,
-  sex: 'male',
-});
-myroslav.getInfo();
+// User.prototype.getInfo = function () {
+//   console.log(
+//     `Користувачу ${this.name} ${this.age} років і в ${
+//       this.sex === 'male' ? 'нього' : 'неї'
+//     } ${this.post} публікацій.`
+//   );
+// };
+// const ivika = new User({ name: 'Ivika', age: 25, post: 250, sex: 'female' });
+// ivika.getInfo();
+// const myroslav = new User({
+//   name: 'Myroslav',
+//   age: 18,
+//   post: 240,
+//   sex: 'male',
+// });
+// myroslav.getInfo();
+
+//2. Напиши функцию конструктор Storage который создаёт объкты
+//для управления складом товаров.
+//При вызове будет получать один агрумент - начальный массив товаров,
+//и записывать его в свойство items.
+//Добавь методы класса:
+//getItems() - возвращайте массив товаров
+//addItems(item) - получает новый товар и добавляет его к текущим
+//removeItem(item) - плучает товар и, если он есть, удаляет его из текущих
+
+// const Storage = function (items)  {
+
+//         this._items = items;
+
+//         this.getItems =  function() {
+//             return this._items
+//         };
+
+// }
+
+//     // Storage.prototype.getItems = function() {
+//     //     return this._items
+//     // }
+
+//     Storage.prototype.addItems = function(item) {
+//         this._items.push(item)
+//     }
+
+//     Storage.prototype.removeItem = function(item){
+//            this._items = this._items.filter(element => element !== item)
+//     }
+
+// const array = new Storage (['q', 'w', 'e', 'r'])
+// console.log(array);
+// array.addItems('y');
+// array.removeItem('y');
+// // console.log(array.getItems());
+
+// console.dir(array);
+
+// //task3
+// Напиши класс Client котрорый создает объект
+// //со свойствами login email
+// //Объяви приватные свойства #login #email,
+// //доступ к которым сделай через геттер и сеттер login email
+
+// class Clients {
+//     #login;
+//     #email;
+//     constructor({login, email}){
+//         this.#login = login;
+//         this.#email = email;
+//     }
+
+//     get userInfo (){
+//         return {login:this.#login, email:this.#email};
+//     }
+
+//     set userInfo ({newLogin, newEmail}){
+//         this.#login = newLogin;
+//         this.#email = newEmail;
+//     }
+// }
+
+// const bobby = new Clients({login: 'abc', email: 'bobby@gmail.com'});
+// console.log(bobby);
+// bobby.userInfo = {newLogin: 'def', newEmail: 'bob@gmail.com'};
+// console.log(bobby.userInfo);
+
+// =========================
+
+// Напиши класс Notes который управляет коллекцией заметок в
+//свойстве items.
+//Заметка это объект со свойствами text priority
+//Добавь классу статическое свойство Priopity,
+//в котором будет храниться объект с приоритетами.
+//Добавь методы addNote(note), removeNote(text)
+//updatePriority(text, newPriority)
+
+class Notes {
+  static PRIORITY() {
+    return {
+      HIGHT: "hight",
+      LOW: "low",
+    };
+  }
+
+  constructor() {
+    this.items = [];
+  }
+
+  addNote(note) {
+    this.items.push(note);
+  }
+
+  removeNote(text) {
+    this.items = this.items.filter((element) => element !== text);
+  }
+
+  updatePriority(text, newPriority) {
+    const findItem = this.items.find((item) => item.text === text);
+    findItem.priority = newPriority;
+    console.log(findItem);
+  }
+}
+
+const newNote = new Notes();
+newNote.addNote(
+  { text: "qwer", priority: Notes.PRIORITY().LOW },
+  { text: "hjklk", priority: Notes.PRIORITY().HIGHT }
+);
+newNote.updatePriority("qwer", Notes.PRIORITY().HIGHT);
