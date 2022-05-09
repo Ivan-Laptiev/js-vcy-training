@@ -453,65 +453,13 @@
 //         this.#email = email;
 //     }
 
-//     get userInfo (){
-//         return {login:this.#login, email:this.#email};
+// class Clients {
+//     #login;
+//     #email;
+//     constructor({login, email}){
+//         this.#login = login;
+//         this.#email = email;
 //     }
-
-//     set userInfo ({newLogin, newEmail}){
-//         this.#login = newLogin;
-//         this.#email = newEmail;
-//     }
-// }
-
-// const bobby = new Clients({login: 'abc', email: 'bobby@gmail.com'});
-// console.log(bobby);
-// bobby.userInfo = {newLogin: 'def', newEmail: 'bob@gmail.com'};
-// console.log(bobby.userInfo);
-
-// =========================
-
-// Напиши класс Notes который управляет коллекцией заметок в
-//свойстве items.
-//Заметка это объект со свойствами text priority
-//Добавь классу статическое свойство Priopity,
-//в котором будет храниться объект с приоритетами.
-//Добавь методы addNote(note), removeNote(text)
-//updatePriority(text, newPriority)
-
-// class Notes {
-//   static PRIORITY() {
-//     return {
-//       HIGHT: "hight",
-//       LOW: "low",
-//     };
-//   }
-
-//   constructor() {
-//     this.items = [];
-//   }
-
-//   addNote(note) {
-//     this.items.push(note);
-//   }
-
-//   removeNote(text) {
-//     this.items = this.items.filter((element) => element !== text);
-//   }
-
-//   updatePriority(text, newPriority) {
-//     const findItem = this.items.find((item) => item.text === text);
-//     findItem.priority = newPriority;
-//     console.log(findItem);
-//   }
-// }
-
-// const newNote = new Notes();
-// newNote.addNote(
-//   { text: "qwer", priority: Notes.PRIORITY().LOW },
-//   { text: "hjklk", priority: Notes.PRIORITY().HIGHT }
-// );
-// newNote.updatePriority("qwer", Notes.PRIORITY().HIGHT);
-
 
 //     get userInfo (){
 //         return {login:this.#login, email:this.#email};
@@ -586,17 +534,55 @@
 // console.log(isEqualSymbols("кот", "ток")); // выведет true
 // console.log(isEqualSymbols("кот", "тик")); // выведет false
 
-const monitors = ['SAMSUNG', 'LG', 'ASUS', 'DELL', 'BENQ', 'ASER'];
+// const monitors = ['SAMSUNG', 'LG', 'ASUS', 'DELL', 'BENQ', 'ASER'];
 
-const sortedMonitors = [...monitors].sort((a, b) => {
-  if (a < b) {
-    return 1
-  }
-  if (a > b) {
-    return -1
-  }
-  return 0
-})
-console.log(sortedMonitors);
+// const sortedMonitors = [...monitors].sort((a, b) => {
+//   if (a < b) {
+//     return 1
+//   }
+//   if (a > b) {
+//     return -1
+//   }
+//   return 0
+// })
+// console.log(sortedMonitors);
 
-console.log(monitors.sort());
+// console.log(monitors.sort());
+
+// ===========================================
+
+//Собрать в allTopics массив всех предметов всех курсов
+//Выполнить фильтрацию, оставив в uniqueTopics только уникальные элементы
+
+const courses = [
+  {
+    name: 'Basic HTML+CSS',
+    topics: ['VSCode', 'HTML', 'CSS', 'GitHub', 'GitHub Desctop'],
+  },
+  {
+    name: 'Intermediate HTML+CSS',
+    topics: ['VSCode', 'HTML', 'CSS', 'GitHub', 'Git', 'Terminal'],
+  },
+  {
+    name: 'Basic JavaScript',
+    topics: [
+      'VSCode',
+      'Type system',
+      'Loops',
+      'Function',
+      'Git',
+      'Conditions',
+      'Classes',
+      'GitHub',
+      'DOM',
+    ],
+  },
+  {
+    name: 'Intermediate JavaScript',
+    topics: ['VSCode', 'NPM', 'VSCode', 'Bundlers', 'Transpiling', 'Git', 'Promises', 'AJAX', 'GitHub'],
+  },
+];
+
+const unicCourses = courses.flatMap(cours => cours.topics).filter((topic, index, array) => array.indexOf(topic) === index);
+console.log(unicCourses);
+
